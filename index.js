@@ -3,11 +3,11 @@ const fs = require('fs');
 const path = require('path');
 var logger = require("morgan");
 require("dotenv").config();
-const fileupload = require('express-fileupload');
+// const fileupload = require('express-fileupload');
 const cors = require("cors");
 
 // const dataPath = './temp/appointment.json'
-const dataPath = path.join(__dirname,'../temp/appointment.json')
+const dataPath = path.join(__dirname,'../appointment.json')
 
 // const indexRouter = require("./Routes/index");
 // const todoRoutes = require("./routes/todoRoute");
@@ -23,10 +23,10 @@ if(process.env.NODE_ENV !== "test") {
 	app.use(logger("dev"));
 }
 
-app.use(fileupload({
-    useTempFiles: true,
-    tempFileDir: "/tmp",
-}))
+// app.use(fileupload({
+//     useTempFiles: true,
+//     tempFileDir: "/tmp",
+// }))
 
 //Parse Json Payloads
 app.use(express.json());
