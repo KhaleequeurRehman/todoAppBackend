@@ -39,12 +39,12 @@ app.use(cors());
 
 //Route Prefixes
 // app.use("/", indexRouter);
-app.get("/", function(req, res) {
-	// res.send('TodoApp Backend is Running');
-	// const accounts = getAccountData()
-    res.status(200).json({success:true,msg:'App is Running'})
-	// res.send('App is Running');
-});
+// app.get("/", function(req, res) {
+// 	// res.send('TodoApp Backend is Running');
+// 	// const accounts = getAccountData()
+//     res.status(200).json({success:true,msg:'App is Running'})
+// 	// res.send('App is Running');
+// });
 
 // util functions
 const saveAccountData = (data) => {
@@ -60,6 +60,13 @@ app.get("/appointments", (req, res) => {
     const accounts = getAccountData()
     res.status(200).json({success:true,msg:'appointments fetched successfully',data:accounts})
   });
+
+  app.get("/", function(req, res) {
+	// res.send('TodoApp Backend is Running');
+	// const accounts = getAccountData()
+    res.status(200).json({success:true,msg:'App is Running'})
+	// res.send('App is Running');
+});
 
 // app.post("/appointments", (req, res)=>{
 //     var existAccounts = getAccountData()
@@ -97,7 +104,7 @@ app.get("/appointments", (req, res) => {
 
 
 // throw 404 if URL not found
-app.all("*", function(req, res) {
+app.get("*", function(req, res) {
 	return res.status(404).json({ status: false, message:"Page not found"});
 });
 
