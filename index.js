@@ -37,6 +37,16 @@ app.use(cors());
 
 // connectDb();
 
+// util functions
+const saveAccountData = (data) => {
+    const stringifyData = JSON.stringify(data)
+    fs.writeFileSync(dataPath, stringifyData)
+}
+const getAccountData = () => {
+    const jsonData = fs.readFileSync(dataPath)
+    return JSON.parse(jsonData)   
+}
+
 //Route Prefixes
 // app.use("/", indexRouter);
 app.get("/", function(req, res) {
@@ -48,8 +58,9 @@ app.get("/", function(req, res) {
 
 app.get("/about", function(req, res) {
 	// res.send('TodoApp Backend is Running');
-	// const accounts = getAccountData()
-    res.status(200).json({success:true,msg:'about api'})
+	const accounts = getAccountData()
+
+    res.status(200).json({success:true,msg:'about api',signal:accounts ? 'yes':'no'})
 	// res.send('App is Running');
 });
 
