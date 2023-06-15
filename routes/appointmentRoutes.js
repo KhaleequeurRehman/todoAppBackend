@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const fs = require('fs');
 const path = require('path');
+const dataPath = './data/appointment.json'
 // const dataPath = path.join(__dirname,'./data/appointment.json')
 
 
@@ -10,10 +11,10 @@ const router = Router();
 // util functions
 const saveAccountData = (data) => {
     const stringifyData = JSON.stringify(data)
-    fs.writeFileSync('./data/appointment.json', stringifyData)
+    fs.writeFileSync(dataPath, stringifyData)
 }
 const getAccountData = () => {
-    const jsonData = fs.readFileSync('./data/appointment.json')
+    const jsonData = fs.readFileSync(dataPath)
     return JSON.parse(jsonData)   
 }
 
@@ -35,7 +36,7 @@ const getAccountData = () => {
 
 // router.put("/appointments/:id", (req, res) => {
 //     var existAccounts = getAccountData()
-//     fs.readFile('./data/appointment.json', 'utf8', (err, data) => {
+//     fs.readFile(dataPath, 'utf8', (err, data) => {
 //       const accountId = req.params['id'];
 //       existAccounts[accountId] = req.body;
 //       saveAccountData(existAccounts);
@@ -44,7 +45,7 @@ const getAccountData = () => {
 //   });
 
 // router.delete("/appointments/:id", (req, res) => {
-//     fs.readFile('./data/appointment.json', 'utf8', (err, data) => {
+//     fs.readFile(dataPath, 'utf8', (err, data) => {
 //       var existAccounts = getAccountData()
 //       const userId = req.params['id'];
 //       delete existAccounts[userId]; 
@@ -71,7 +72,7 @@ router.post("/", (req, res)=>{
 
 router.put("/:id", (req, res) => {
     var existAccounts = getAccountData()
-    fs.readFile('./data/appointment.json', 'utf8', (err, data) => {
+    fs.readFile(dataPath, 'utf8', (err, data) => {
       const accountId = req.params['id'];
       existAccounts[accountId] = req.body;
       saveAccountData(existAccounts);
@@ -80,7 +81,7 @@ router.put("/:id", (req, res) => {
   });
 
 router.delete("/:id", (req, res) => {
-    fs.readFile('./data/appointment.json', 'utf8', (err, data) => {
+    fs.readFile(dataPath, 'utf8', (err, data) => {
       var existAccounts = getAccountData()
       const userId = req.params['id'];
       delete existAccounts[userId]; 
