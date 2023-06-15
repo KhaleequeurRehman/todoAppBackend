@@ -7,7 +7,7 @@ const cors = require("cors");
 // const indexRouter = require("./Routes/index");
 const todoRoutes = require("./routes/todoRoute");
 const appointmentRoutes = require('./routes/appointmentRoutes')
-const connectDb = require('./config/db')
+// const connectDb = require('./config/db')
 
 const app = express();
 const PORT = process.env.PORT | 5000;
@@ -24,7 +24,7 @@ app.use(express.json());
 //To allow cross-origin requests
 app.use(cors());
 
-connectDb();
+// connectDb();
 
 //Route Prefixes
 // app.use("/", indexRouter);
@@ -33,8 +33,8 @@ app.get("/", function(req, res) {
 	res.send('App is Running');
 });
 
-app.use('/api/v1/',todoRoutes);
 app.use('/api/v1/', appointmentRoutes)
+// app.use('/api/v1/',todoRoutes);
 
 
 // throw 404 if URL not found

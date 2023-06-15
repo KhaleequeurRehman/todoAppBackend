@@ -20,7 +20,7 @@ const getAccountData = () => {
 
 router.get("/appointments", (req, res) => {
     const accounts = getAccountData()
-    res.status(200).json(accounts)
+    res.status(200).json({success:true,msg:'appointments fetched successfully',data:accounts})
   });
 
 router.post("/appointments", (req, res)=>{
@@ -40,7 +40,7 @@ router.put("/appointments/:id", (req, res) => {
       const accountId = req.params['id'];
       existAccounts[accountId] = req.body;
       saveAccountData(existAccounts);
-      res.json(`appointment with id ${accountId} has been updated`)
+      res.json({success:true, msg:`appointment with id ${accountId} has been updated`})
     }, true);
   });
 
@@ -50,7 +50,7 @@ router.delete("/appointments/:id", (req, res) => {
       const userId = req.params['id'];
       delete existAccounts[userId]; 
       saveAccountData(existAccounts);
-      res.json(`accounts with id ${userId} has been deleted`)
+      res.json({success:true, msg:`accounts with id ${userId} has been deleted`})
     }, true);
   });
 
