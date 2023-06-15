@@ -1,5 +1,5 @@
 const express = require("express");
-var logger = require("morgan");
+// var logger = require("morgan");
 // const dataPath = './data/appointment.json'
 // const fs = require('fs');
 require("dotenv").config();
@@ -16,9 +16,9 @@ const PORT = process.env.PORT | 5000;
 
 
 //don't show the log when it is test
-if(process.env.NODE_ENV !== "test") {
-	app.use(logger("dev"));
-}
+// if(process.env.NODE_ENV !== "test") {
+// 	app.use(logger("dev"));
+// }
 
 //Parse Json Payloads
 app.use(express.json());
@@ -40,13 +40,15 @@ connectDb();
 
 //Route Prefixes
 // app.use("/", indexRouter);
-app.get("/", function(req, res) {
-	// res.send('TodoApp Backend is Running');
-	res.send('App is Running');
-});
+// app.get("/", function(req, res) {
+// 	// res.send('TodoApp Backend is Running');
+// 	res.send('App is Running');
+// });
 
-app.use('/api/v1/',todoRoutes);
-app.use('/api/v1/', appointmentRoutes)
+// app.use('/api/v1/',todoRoutes);
+app.use('/todos',todoRoutes);
+// app.use('/api/v1/', appointmentRoutes)
+app.use('/appointments', appointmentRoutes)
 
 
 // app.get("/appointments", (req, res) => {
