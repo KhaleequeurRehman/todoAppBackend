@@ -28,6 +28,16 @@ app.use(cors());
 
 connectDb();
 
+// util functions
+const saveAccountData = (data) => {
+    const stringifyData = JSON.stringify(data)
+    fs.writeFileSync(dataPath, stringifyData)
+}
+const getAccountData = () => {
+    const jsonData = fs.readFileSync(dataPath)
+    return JSON.parse(jsonData)   
+}
+
 //Route Prefixes
 // app.use("/", indexRouter);
 app.get("/", function(req, res) {
@@ -39,22 +49,12 @@ app.get("/", function(req, res) {
 // app.use('/api/v1/', appointmentRoutes)
 
 
-// util functions
-const saveAccountData = (data) => {
-    const stringifyData = JSON.stringify(data)
-    fs.writeFileSync(dataPath, stringifyData)
-}
-const getAccountData = () => {
-    const jsonData = fs.readFileSync(dataPath)
-    return JSON.parse(jsonData)   
-}
-
 app.get("/appointments", (req, res) => {
     const accounts = getAccountData()
     res.status(200).send(accounts)
   });
 
-app.post("/api/v1/appointments", (req, res)=>{
+app.post("/appointments", (req, res)=>{
     var existAccounts = getAccountData()
     const newAccountId = Math.floor(100000 + Math.random() * 900000)
  
@@ -65,7 +65,7 @@ app.post("/api/v1/appointments", (req, res)=>{
     res.status(201).send({success: true, msg: 'appointment added successfully'})
 });
 
-app.put("/api/v1/appointments/:id", (req, res) => {
+app.put("/appointments/:id", (req, res) => {
     var existAccounts = getAccountData()
     fs.readFile(dataPath, 'utf8', (err, data) => {
       const accountId = req.params['id'];
@@ -75,7 +75,7 @@ app.put("/api/v1/appointments/:id", (req, res) => {
     }, true);
   });
 
-app.delete("/api/v1/appointments/:id", (req, res) => {
+app.delete("/appointments/:id", (req, res) => {
     fs.readFile(dataPath, 'utf8', (err, data) => {
       var existAccounts = getAccountData()
       const userId = req.params['id'];
