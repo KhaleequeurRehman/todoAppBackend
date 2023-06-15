@@ -2,7 +2,7 @@ const { Router } = require("express");
 const fs = require('fs');
 const path = require('path');
 // const dataPath = './data/appointment.json'
-const dataPath = path.join(__dirname,'./data/appointment.json')
+const dataPath = path.join(__dirname,'../data/appointment.json')
 
 
 const router = Router();
