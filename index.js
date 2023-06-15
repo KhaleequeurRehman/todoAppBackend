@@ -7,6 +7,7 @@ const cors = require("cors");
 
 const indexRouter = require("./Routes/index");
 const todoRoutes = require("./routes/todoRoute");
+const appointmentRoutes = require('./routes/appointmentRoutes')
 const connectDb = require('./config/db')
 
 const app = express();
@@ -29,6 +30,7 @@ connectDb();
 //Route Prefixes
 app.use("/", indexRouter);
 app.use('/api/v1/',todoRoutes);
+app.use('/api/v1/', appointmentRoutes)
 
 
 // throw 404 if URL not found
