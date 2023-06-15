@@ -1,7 +1,7 @@
 const express = require("express");
 var logger = require("morgan");
 require("dotenv").config();
-
+const fileupload = require('express-fileupload');
 const cors = require("cors");
 
 // const indexRouter = require("./Routes/index");
@@ -18,11 +18,17 @@ if(process.env.NODE_ENV !== "test") {
 	app.use(logger("dev"));
 }
 
+app.use(fileupload({
+    useTempFiles: true,
+    tempFileDir: "/tmp",
+}))
+
 //Parse Json Payloads
 app.use(express.json());
 
 //To allow cross-origin requests
 app.use(cors());
+
 
 // connectDb();
 
