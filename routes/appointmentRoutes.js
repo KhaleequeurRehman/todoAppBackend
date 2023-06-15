@@ -10,10 +10,10 @@ const router = Router();
 // util functions
 const saveAccountData = (data) => {
     const stringifyData = JSON.stringify(data)
-    fs.writeFileSync('./data/appointment.json', stringifyData)
+    fs.writeFileSync('../data/appointment.json', stringifyData)
 }
 const getAccountData = () => {
-    const jsonData = fs.readFileSync('./data/appointment.json')
+    const jsonData = fs.readFileSync('../data/appointment.json')
     return JSON.parse(jsonData)   
 }
 
@@ -35,7 +35,7 @@ router.post("/appointments", (req, res)=>{
 
 router.put("/appointments/:id", (req, res) => {
     var existAccounts = getAccountData()
-    fs.readFile('./data/appointment.json', 'utf8', (err, data) => {
+    fs.readFile('../data/appointment.json', 'utf8', (err, data) => {
       const accountId = req.params['id'];
       existAccounts[accountId] = req.body;
       saveAccountData(existAccounts);
