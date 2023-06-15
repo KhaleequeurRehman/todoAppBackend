@@ -18,7 +18,7 @@ const getAccountData = () => {
 
 router.get("/appointments", (req, res) => {
     const accounts = getAccountData()
-    res.status(200).send(accounts)
+    res.status(200).json(accounts)
   });
 
 router.post("/appointments", (req, res)=>{
@@ -29,7 +29,7 @@ router.post("/appointments", (req, res)=>{
    
     console.log('existAccounts ',existAccounts);
     saveAccountData(existAccounts);
-    res.status(201).send({success: true, msg: 'appointment added successfully'})
+    res.status(201).json({success: true, msg: 'appointment added successfully'})
 });
 
 router.put("/appointments/:id", (req, res) => {
@@ -38,7 +38,7 @@ router.put("/appointments/:id", (req, res) => {
       const accountId = req.params['id'];
       existAccounts[accountId] = req.body;
       saveAccountData(existAccounts);
-      res.send(`appointment with id ${accountId} has been updated`)
+      res.json(`appointment with id ${accountId} has been updated`)
     }, true);
   });
 
@@ -48,7 +48,7 @@ router.delete("/appointments/:id", (req, res) => {
       const userId = req.params['id'];
       delete existAccounts[userId]; 
       saveAccountData(existAccounts);
-      res.send(`accounts with id ${userId} has been deleted`)
+      res.json(`accounts with id ${userId} has been deleted`)
     }, true);
   });
 
