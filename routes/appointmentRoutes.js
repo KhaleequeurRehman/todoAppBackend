@@ -1,19 +1,19 @@
 const { Router } = require("express");
 const fs = require('fs');
 const path = require('path');
-const dataPath = path.join(__dirname,'../data/appointment.json')
+// const dataPath = path.join(__dirname,'./data/appointment.json')
 
 
 const router = Router();
-console.log('dataPath ',dataPath)
+// console.log('dataPath ',dataPath)
 
 // util functions
 const saveAccountData = (data) => {
     const stringifyData = JSON.stringify(data)
-    fs.writeFileSync(dataPath, stringifyData)
+    fs.writeFileSync('./data/appointment.json', stringifyData)
 }
 const getAccountData = () => {
-    const jsonData = fs.readFileSync(dataPath)
+    const jsonData = fs.readFileSync('./data/appointment.json')
     return JSON.parse(jsonData)   
 }
 
@@ -35,7 +35,7 @@ router.post("/appointments", (req, res)=>{
 
 router.put("/appointments/:id", (req, res) => {
     var existAccounts = getAccountData()
-    fs.readFile(dataPath, 'utf8', (err, data) => {
+    fs.readFile('./data/appointment.json', 'utf8', (err, data) => {
       const accountId = req.params['id'];
       existAccounts[accountId] = req.body;
       saveAccountData(existAccounts);
@@ -44,7 +44,7 @@ router.put("/appointments/:id", (req, res) => {
   });
 
 router.delete("/appointments/:id", (req, res) => {
-    fs.readFile(dataPath, 'utf8', (err, data) => {
+    fs.readFile('../data/appointment.json', 'utf8', (err, data) => {
       var existAccounts = getAccountData()
       const userId = req.params['id'];
       delete existAccounts[userId]; 
