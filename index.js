@@ -5,7 +5,7 @@ require("dotenv").config();
 
 const cors = require("cors");
 
-const indexRouter = require("./Routes/index");
+// const indexRouter = require("./Routes/index");
 const todoRoutes = require("./routes/todoRoute");
 const appointmentRoutes = require('./routes/appointmentRoutes')
 const connectDb = require('./config/db')
@@ -28,7 +28,12 @@ app.use(cors());
 connectDb();
 
 //Route Prefixes
-app.use("/", indexRouter);
+// app.use("/", indexRouter);
+app.get("/", function(req, res) {
+	// res.send('TodoApp Backend is Running');
+	res.send('App is Running');
+});
+
 app.use('/api/v1/',todoRoutes);
 app.use('/api/v1/', appointmentRoutes)
 
