@@ -5,7 +5,7 @@ const fileupload = require('express-fileupload');
 const cors = require("cors");
 
 // const indexRouter = require("./Routes/index");
-const todoRoutes = require("./routes/todoRoute");
+// const todoRoutes = require("./routes/todoRoute");
 const appointmentRoutes = require('./routes/appointmentRoutes')
 // const connectDb = require('./config/db')
 
@@ -39,7 +39,7 @@ app.get("/", function(req, res) {
 	res.send('App is Running');
 });
 
-app.use('/api/v1', appointmentRoutes)
+app.use('/api/v1/', appointmentRoutes)
 // app.use('/api/v1/',todoRoutes);
 
 
