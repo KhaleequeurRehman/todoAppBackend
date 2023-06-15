@@ -45,7 +45,7 @@ app.get("/", function(req, res) {
 	res.send('App is Running');
 });
 
-// app.use('/api/v1/',todoRoutes);
+app.use('/api/v1/',todoRoutes);
 app.use('/api/v1/', appointmentRoutes)
 
 
